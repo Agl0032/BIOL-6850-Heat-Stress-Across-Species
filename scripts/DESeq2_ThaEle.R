@@ -5,9 +5,9 @@
 # https://bioconductor.riken.jp/packages/2.14/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf
 # http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html
 
-### Define the project directory's location on your computer
-#thisDir <- dirname(parent.frame(2)$ofile) # automatic but only works on source
-thisDir <- "C:/Users/schne/OneDrive - Auburn University/college/10 spring 2023/biol 6850/HeatStressConsistency/scripts"
+### Set working directory
+thisDir <- dirname(parent.frame(2)$ofile) # automatic but only works on source
+#thisDir <- "/path/to/script/folder" 
 setwd(thisDir)
 setwd("../Results/ThaEle")
 
