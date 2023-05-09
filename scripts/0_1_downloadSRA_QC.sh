@@ -1,5 +1,7 @@
 #! /bin/bash
 
+##### Download FASTQ files for all samples from SRA using SRA-toolkit and analyze quality with FastQC
+
 ############## Load modules
 source /opt/asn/etc/asn-bash-profiles-special/modules.sh
 module load sra/2.10.9
@@ -13,7 +15,6 @@ RAWDIR="$DIR/RawData/"
 CLEANDIR="$DIR/CleanData/"
 PREDIR="$DIR/PreCleanQuality/"
 POSTDIR="$DIR/PostCleanQuality/"
-FILEDIR="$DIR/lists"
 
 speciesArray=("ThaEle" "SceUnd") # garter snake, fence lizard
 
@@ -25,11 +26,11 @@ do
   mkdir -p ${POSTDIR}/${species}
 
 
-  ############## SRA toolkit to download sequences (in parallel)
+  ############## SRA toolkit to download sequences (in parallel using xargs)
   cd $SRADIR
 
-  cat ${FILEDIR}/SraAccList${species}.txt | xargs --max-procs=4 --max-args=1 prefetch
-  cat ${FILEDIR}/SraAccList${species}.txt | xargs --max-procs=4 --max-args=1 fastq-dump --outdir "${RAWDIR}/${species}" --readids --split-files
+  cat SraAccList${species}.txt | xargs --max-procs=4 --max-args=1 prefetch
+  cat SraAccList${species}.txt | xargs --max-procs=4 --max-args=1 fastq-dump --outdir "${RAWDIR}/${species}" --readids --split-files
 
   cd ${RAWDIR}/${species}
   echo *.fastq | xargs --max-procs=4 --max-args=1 --verbose gzip 
@@ -44,7 +45,6 @@ do
 done
 
 
-#######  Tarball the directory containing the FASTQC results so we can easily bring it back to our computer to evaluate.
-## when finished use scp or rsync to bring the tarballed .gz results file to your computer and open the .html file to evaluate the quality of your raw data.
+#######  Tarball the directory containing the FASTQC results
 cd $DIR
 tar cvzf PreCleanQuality.tar.gz PreCleanQuality/*
