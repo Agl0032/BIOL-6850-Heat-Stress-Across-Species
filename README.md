@@ -55,7 +55,7 @@ HeatStressConsistency/
 | SRR629655 | heat stress | lakeshore |
 | SRR629656 | control | meadow |
 | SRR629657 | heat stress | lakeshore |
-| SRR629658 | control stress | meadow |
+| SRR629658 | control | meadow |
 | SRR629659 | heat stress | lakeshore |
 | SRR629661 | control | meadow |
 | SRR629660 | heat stress | meadow |
