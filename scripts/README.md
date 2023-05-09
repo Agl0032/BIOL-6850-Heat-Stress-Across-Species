@@ -10,6 +10,7 @@
 
 ## Utility scripts
 - [calcQuals.sh](calcQuals.sh): Calculate average sequence quality for each FASTQ file.
+- [finishFastQC.sh](finishFastQC.sh): Run FastQC on file that haven't already been checked.
 - [runMultiQC.sh](runMultiQC.sh): Analyze FastQC output grouped by species.
 - [GSEAprep.R](GSEAprep.R): Create correctly formatted input files for GSEA.
   - Normalized expression data file (.txt)
